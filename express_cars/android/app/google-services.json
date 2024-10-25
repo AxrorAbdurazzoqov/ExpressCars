@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "208836538948",
+    "project_id": "expresscars-ea1d5",
+    "storage_bucket": "expresscars-ea1d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208836538948:android:416eac24216b75c7d08211",
+        "android_client_info": {
+          "package_name": "com.nite.express_cars"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208836538948-2rmtjfoc05cl2k9e08dhr7ok2a2bnkq8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nite.express_cars",
+            "certificate_hash": "b265d9790af9369bfb2d8ea126c8a4832c59c866"
+          }
+        },
+        {
+          "client_id": "208836538948-iqle0vcrh46mnmfhjvjru28hjg1ogd3s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-rLwIH69nucjzHEXuQldL6ibhtFH49xI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208836538948-iqle0vcrh46mnmfhjvjru28hjg1ogd3s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "208836538948-m5klgss8fa44e6vg9b8v2japsngr3ml0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nite.expressCars"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
