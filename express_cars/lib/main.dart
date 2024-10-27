@@ -1,4 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:express_cars/src/features/detail/data/data_source/detail_data_source.dart';
+import 'package:express_cars/src/features/detail/data/repository/detail_repository.dart';
+import 'package:express_cars/src/features/detail/domain/usecase/fetch_car_by_id_usecase.dart';
+import 'package:express_cars/src/features/detail/presentation/bloc/bloc/detail_bloc.dart';
+import 'package:express_cars/src/features/home/domain/usecase/fetch_all_cars_usecase.dart';
+import 'package:express_cars/src/features/home/domain/usecase/fetch_popular_cars_usecase.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,7 +14,7 @@ import 'package:express_cars/firebase_options.dart';
 import 'package:express_cars/src/features/auth/presentation/bloc/bloc/auth_bloc.dart';
 import 'package:express_cars/src/features/home/data/data_source/home_data_source.dart';
 import 'package:express_cars/src/features/home/data/repository/home_repository.dart';
-import 'package:express_cars/src/features/home/domain/usecase/get_rentals_usecase.dart';
+import 'package:express_cars/src/features/home/domain/usecase/fetch_brands_usecase.dart';
 import 'package:express_cars/src/features/home/presentation/bloc/bloc/home_bloc.dart';
 import 'package:express_cars/src/features/navigation/bloc/navigation_bloc.dart';
 import 'package:express_cars/src/features/onboarding/bloc/bloc/onboarding_bloc.dart';
@@ -31,9 +37,28 @@ void main() async {
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(
           create: (context) => HomeBloc(
-            getRentalsUsecase: GetRentalsUsecase(
+            fetchBrandsUsecase: FetchBrandsUsecase(
               repository: HomeRepositoryImpl(
                 dataSource: HomeDataSourceImpl(dio: dio),
+              ),
+            ),
+            fetchPopularCarsUsecase: FetchPopularCarsUsecase(
+              repository: HomeRepositoryImpl(
+                dataSource: HomeDataSourceImpl(dio: dio),
+              ),
+            ),
+            fetchAllCarsUsecase: FetchAllCarsUsecase(
+              repository: HomeRepositoryImpl(
+                dataSource: HomeDataSourceImpl(dio: dio),
+              ),
+            ),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => DetailBloc(
+            fetchCarByIdUsecase: FetchCarByIdUsecase(
+              repository: DetailRepositoryImpl(
+                dataSource: DetailDataSourceImpl(dio: dio),
               ),
             ),
           ),

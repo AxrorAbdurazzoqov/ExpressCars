@@ -11,6 +11,13 @@ class SetLocationScreen extends StatefulWidget {
 
 class _SetLocationScreenState extends State<SetLocationScreen> {
   final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

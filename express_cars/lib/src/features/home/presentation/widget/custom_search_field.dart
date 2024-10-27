@@ -15,35 +15,33 @@ class CustomSearchTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        height: 50,
-        child: TextField(
-          onTap: onTap,
-          controller: controller,
-          readOnly: true,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: AppColors.instance.white,
-            hintText: 'Search',
-            hintStyle: context.textTheme.titleMedium!.copyWith(
-              color: AppColors.instance.grey,
-              fontWeight: FontWeight.w400,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.instance.grey),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.instance.grey),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            contentPadding: EdgeInsets.symmetric(vertical: 15),
-            prefixIconConstraints: const BoxConstraints(minHeight: 40, minWidth: 40),
-            prefixIcon: Padding(
-              padding: const EdgeInsets.only(left: 7),
-              child: SvgPicture.asset(AppVectors.instance.search),
-            ),
+    return SizedBox(
+      height: 50,
+      child: TextField(
+        onTap: onTap,
+        controller: controller,
+        readOnly: true,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: AppColors.instance.white,
+          hintText: 'Search',
+          hintStyle: context.textTheme.titleMedium!.copyWith(
+            color: AppColors.instance.grey,
+            fontWeight: FontWeight.w400,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.instance.grey),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.instance.grey),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          contentPadding: EdgeInsets.symmetric(vertical: 15),
+          prefixIconConstraints: const BoxConstraints(minHeight: 40, minWidth: 40),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.only(left: 7),
+            child: SvgPicture.asset(AppVectors.instance.search),
           ),
         ),
       ),

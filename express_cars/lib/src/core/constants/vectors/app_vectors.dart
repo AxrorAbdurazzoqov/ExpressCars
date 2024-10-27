@@ -6,6 +6,7 @@ class AppVectors {
   //!Icons
   final String star = 'assets/icons/star.svg';
   final String motor = 'assets/icons/motor.svg';
+  final String fuel = 'assets/icons/fuel.svg';
   final String search = 'assets/icons/search.svg';
   final String filter = 'assets/icons/filter.svg';
   final String location = 'assets/icons/location.svg';

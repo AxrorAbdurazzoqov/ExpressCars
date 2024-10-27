@@ -12,4 +12,5 @@ class AppColors {
   final Color black = const Color(0xff181B0E);
   final Color greenAccent = const Color(0xffC3E54B);
   final Color lightGreenAccent = const Color(0xffC3E54B);
+  final Color amber = Colors.amber;
 }

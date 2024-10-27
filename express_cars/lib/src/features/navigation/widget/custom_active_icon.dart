@@ -14,16 +14,16 @@ class CustomActiveIcon extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         const SizedBox(
-          width: 25,
+          width: 23,
           height: 35,
         ),
         Positioned(
           left: 0,
           right: 0,
-          bottom: context.getHeight(0.02),
+          bottom: context.getHeight(0.028),
           child: Container(
-            height: 30,
-            width: 25,
+            height: 27,
+            width: 20,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
