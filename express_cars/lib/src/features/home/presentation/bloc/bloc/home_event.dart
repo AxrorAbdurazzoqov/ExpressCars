@@ -37,3 +37,11 @@ class OnCustomDetailFilterEvent extends HomeEvent {
         features,
       ];
 }
+
+class FetchBrandCarsEvent extends HomeEvent {
+  final String brandName;
+
+  FetchBrandCarsEvent({required this.brandName});
+  @override
+  List<Object?> get props => [];
+}

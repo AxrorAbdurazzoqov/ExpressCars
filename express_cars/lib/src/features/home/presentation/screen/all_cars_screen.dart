@@ -7,7 +7,7 @@ import 'package:express_cars/src/features/home/presentation/bloc/bloc/home_bloc.
 import 'package:express_cars/src/features/home/presentation/bloc/bloc/home_event.dart';
 import 'package:express_cars/src/features/home/presentation/bloc/bloc/home_state.dart';
 import 'package:express_cars/src/features/home/presentation/widget/custom_filter_widget.dart';
-import 'package:express_cars/src/features/home/presentation/widget/custom_search_field.dart';
+import 'package:express_cars/src/core/common/custom_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';

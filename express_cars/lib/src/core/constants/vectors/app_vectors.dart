@@ -14,6 +14,7 @@ class AppVectors {
   final String dashboard = 'assets/icons/dashboard.svg';
   final String dropButton = 'assets/icons/drop_button.svg';
   final String google = 'assets/icons/google.svg';
+  final String like = 'assets/icons/like.svg';
 
   //! Images
   final String logo = 'assets/images/logo.png';

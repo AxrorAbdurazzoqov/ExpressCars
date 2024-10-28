@@ -1,5 +1,7 @@
+import 'package:express_cars/src/core/constants/colors/app_colors.dart';
 import 'package:express_cars/src/core/extensions/context_text_theme.dart';
-import 'package:express_cars/src/features/home/presentation/widget/custom_search_field.dart';
+import 'package:express_cars/src/features/home/presentation/widget/custom_place_card.dart';
+import 'package:express_cars/src/core/common/custom_search_field.dart';
 import 'package:flutter/material.dart';
 
 class SetLocationScreen extends StatefulWidget {
@@ -34,6 +36,20 @@ class _SetLocationScreenState extends State<SetLocationScreen> {
           children: [
             const SizedBox(height: 30),
             CustomSearchTextField(controller: _searchController),
+            const SizedBox(height: 20),
+            CustomPlaceCard(
+              color: AppColors.instance.greenAccent,
+              icon: Icons.local_cafe,
+              title: 'Coffee',
+              subtitle: '150 places',
+            ),
+            const SizedBox(height: 10),
+            CustomPlaceCard(
+              color: AppColors.instance.red,
+              icon: Icons.local_movies,
+              title: 'Cinema',
+              subtitle: '8 places',
+            ),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:express_cars/src/core/common/car_info_model.dart';
 import 'package:express_cars/src/core/usecase/usecase.dart';
 import 'package:express_cars/src/features/home/domain/usecase/fetch_all_cars_usecase.dart';
+import 'package:express_cars/src/features/home/domain/usecase/fetch_brand_cars_usecase.dart';
 import 'package:express_cars/src/features/home/domain/usecase/fetch_brands_usecase.dart';
 import 'package:express_cars/src/features/home/domain/usecase/fetch_popular_cars_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,8 +13,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final FetchBrandsUsecase fetchBrandsUsecase;
   final FetchPopularCarsUsecase fetchPopularCarsUsecase;
   final FetchAllCarsUsecase fetchAllCarsUsecase;
+  final FetchBrandCarsUsecase fetchBrandCarsUsecase;
 
-  HomeBloc({required this.fetchBrandsUsecase, required this.fetchPopularCarsUsecase, required this.fetchAllCarsUsecase}) : super(HomeState(status: HomeStatus.initial)) {
+  HomeBloc({required this.fetchBrandsUsecase, required this.fetchPopularCarsUsecase, required this.fetchAllCarsUsecase, required this.fetchBrandCarsUsecase}) : super(HomeState(status: HomeStatus.initial)) {
     on<FetchAllDataEvent>((event, emit) async {
       emit(state.copyWith(status: HomeStatus.loading));
 
@@ -37,7 +39,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final result = await fetchAllCarsUsecase.call(NoParams());
       emit(HomeState(status: HomeStatus.loading));
       if (result.isRight) {
-        print('Data came 3 ${result.right}');
         emit(state.copyWith(allCarsData: result.right, status: HomeStatus.success));
       } else {
         emit(state.copyWith(errorMessage: result.left, status: HomeStatus.failure));
@@ -79,6 +80,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       }
 
       emit(state.copyWith(allCarsData: filteredCars, status: HomeStatus.success));
+    });
+
+    on<FetchBrandCarsEvent>((event, emit) async {
+      final result = await fetchBrandCarsUsecase.call(event.brandName);
+      if (result.isRight) {
+        emit(state.copyWith(brandCarsData: result.right));
+      } else {
+        emit(state.copyWith(errorMessage: result.left));
+      }
     });
   }
 }

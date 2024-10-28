@@ -6,9 +6,10 @@ import 'package:express_cars/src/core/common/car_info_model.dart';
 import 'package:express_cars/src/core/utils/base_url.dart';
 
 abstract class HomeDataSource {
-  Future<List<BrandModel>> fetchBrandCars();
+  Future<List<BrandModel>> fetchBrands();
   Future<List<CarInfoModel>> fetchPopularCars();
   Future<List<CarInfoModel>> fetchAllCars();
+  Future<List<CarInfoModel>> fetchBrandCars(String brandName);
 }
 
 class HomeDataSourceImpl extends HomeDataSource {
@@ -17,7 +18,7 @@ class HomeDataSourceImpl extends HomeDataSource {
   HomeDataSourceImpl({required Dio dio}) : _dio = dio;
 
   @override
-  Future<List<BrandModel>> fetchBrandCars() async {
+  Future<List<BrandModel>> fetchBrands() async {
     try {
       final Response response = await _dio.get('$baseUrl/brands');
 
@@ -51,6 +52,20 @@ class HomeDataSourceImpl extends HomeDataSource {
     try {
       final Response response = await _dio.get('$baseUrl/cars');
 
+      if (response.statusCode != null && response.statusCode == 200) {
+        return (jsonDecode(response.data) as List).map((mp) => CarInfoModel.fromJson(mp)).toList();
+      } else {
+        throw Exception(response.statusMessage ?? "something went wrong");
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<CarInfoModel>> fetchBrandCars(String brandName) async {
+    try {
+      final Response response = await _dio.get('$baseUrl/brand/$brandName');
       if (response.statusCode != null && response.statusCode == 200) {
         return (jsonDecode(response.data) as List).map((mp) => CarInfoModel.fromJson(mp)).toList();
       } else {

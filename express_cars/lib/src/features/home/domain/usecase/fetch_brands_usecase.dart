@@ -9,5 +9,5 @@ class FetchBrandsUsecase extends UseCase<List<BrandModel>, NoParams> {
   FetchBrandsUsecase({required HomeRepository repository}) : _repository = repository;
 
   @override
-  Future<Either<String, List<BrandModel>>> call(params) => _repository.fetchBrandCars();
+  Future<Either<String, List<BrandModel>>> call(params) => _repository.fetchBrands();
 }

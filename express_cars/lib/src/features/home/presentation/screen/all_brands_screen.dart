@@ -1,12 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:express_cars/src/features/home/presentation/bloc/bloc/home_bloc.dart';
 import 'package:express_cars/src/features/home/presentation/bloc/bloc/home_state.dart';
+import 'package:express_cars/src/features/home/presentation/screen/brand_cars_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:express_cars/src/core/constants/colors/app_colors.dart';
 import 'package:express_cars/src/core/extensions/context_text_theme.dart';
-import 'package:express_cars/src/features/home/presentation/widget/custom_search_field.dart';
+import 'package:express_cars/src/core/common/custom_search_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AllBrandsScreen extends StatefulWidget {
@@ -60,6 +61,12 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                     itemBuilder: (context, index) {
                       return Card(
                         child: ListTile(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BrandCarsScreen(brandName: state.brandsData![index].name),
+                            ),
+                          ),
                           leading: Container(
                             padding: EdgeInsets.all(8),
                             decoration: BoxDecoration(

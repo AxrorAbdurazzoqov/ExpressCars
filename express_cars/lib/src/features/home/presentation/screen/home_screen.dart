@@ -14,7 +14,7 @@ import 'package:express_cars/src/features/home/presentation/bloc/bloc/home_state
 import 'package:express_cars/src/features/home/presentation/screen/all_brands_screen.dart';
 import 'package:express_cars/src/features/home/presentation/widget/brands_list_view_builder.dart';
 import 'package:express_cars/src/features/home/presentation/widget/custom_category_widget.dart';
-import 'package:express_cars/src/features/home/presentation/widget/custom_search_field.dart';
+import 'package:express_cars/src/core/common/custom_search_field.dart';
 import 'package:express_cars/src/features/home/presentation/widget/home_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {

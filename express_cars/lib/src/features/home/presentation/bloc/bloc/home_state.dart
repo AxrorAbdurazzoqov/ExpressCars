@@ -9,22 +9,18 @@ class HomeState extends Equatable {
   final List<BrandModel>? brandsData;
   final List<CarInfoModel>? popularCarsData;
   final List<CarInfoModel>? allCarsData;
+  final List<CarInfoModel>? brandCarsData;
 
-  const HomeState({required this.status, this.errorMessage, this.brandsData, this.popularCarsData, this.allCarsData});
+  const HomeState({required this.status, this.errorMessage, this.brandsData, this.popularCarsData, this.allCarsData, this.brandCarsData});
 
-  HomeState copyWith({
-    List<BrandModel>? brandsData,
-    List<CarInfoModel>? popularCarsData,
-    HomeStatus? status,
-    String? errorMessage,
-    List<CarInfoModel>? allCarsData,
-  }) {
+  HomeState copyWith({List<BrandModel>? brandsData, List<CarInfoModel>? popularCarsData, HomeStatus? status, String? errorMessage, List<CarInfoModel>? allCarsData, List<CarInfoModel>? brandCarsData}) {
     return HomeState(
       status: status ?? this.status,
       errorMessage: errorMessage ?? this.errorMessage,
       popularCarsData: popularCarsData ?? this.popularCarsData,
       brandsData: brandsData ?? this.brandsData,
       allCarsData: allCarsData ?? this.allCarsData,
+      brandCarsData: brandCarsData ?? this.brandCarsData,
     );
   }
 
@@ -35,6 +31,7 @@ class HomeState extends Equatable {
         brandsData,
         popularCarsData,
         allCarsData,
+        brandCarsData,
         HomeStatus.initial,
         HomeStatus.loading,
         HomeStatus.success,

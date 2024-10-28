@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:express_cars/src/core/utils/hive_service.dart';
 import 'package:express_cars/src/features/detail/data/data_source/detail_data_source.dart';
 import 'package:express_cars/src/features/detail/data/repository/detail_repository.dart';
 import 'package:express_cars/src/features/detail/domain/usecase/fetch_car_by_id_usecase.dart';
 import 'package:express_cars/src/features/detail/presentation/bloc/bloc/detail_bloc.dart';
 import 'package:express_cars/src/features/home/domain/usecase/fetch_all_cars_usecase.dart';
+import 'package:express_cars/src/features/home/domain/usecase/fetch_brand_cars_usecase.dart';
 import 'package:express_cars/src/features/home/domain/usecase/fetch_popular_cars_usecase.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +25,7 @@ import 'package:express_cars/src/features/splash/splash_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  // final NotificationService notificationService = NotificationService();
-  // await notificationService.init();
+  await HiveService.instance.createBox();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp
   ]);
@@ -48,6 +49,11 @@ void main() async {
               ),
             ),
             fetchAllCarsUsecase: FetchAllCarsUsecase(
+              repository: HomeRepositoryImpl(
+                dataSource: HomeDataSourceImpl(dio: dio),
+              ),
+            ),
+            fetchBrandCarsUsecase: FetchBrandCarsUsecase(
               repository: HomeRepositoryImpl(
                 dataSource: HomeDataSourceImpl(dio: dio),
               ),

@@ -2,6 +2,7 @@ import 'package:express_cars/src/core/common/car_info_model.dart';
 import 'package:express_cars/src/core/constants/colors/app_colors.dart';
 import 'package:express_cars/src/core/constants/vectors/app_vectors.dart';
 import 'package:express_cars/src/core/extensions/context_text_theme.dart';
+import 'package:express_cars/src/core/utils/hive_service.dart';
 import 'package:express_cars/src/features/detail/presentation/screen/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -87,13 +88,30 @@ class CustomInfoCard extends StatelessWidget {
         Positioned(
           top: 10,
           right: 10,
-          child: Container(
-            padding: EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: AppColors.instance.grey.withValues(alpha: 0.4),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: SvgPicture.asset(AppVectors.instance.favourite),
+          child: StatefulBuilder(
+            builder: (context, setState) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: AppColors.instance.grey.withValues(alpha: 0.4),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      if (HiveService.instance.readData(key: model.carId) == null) {
+                        HiveService.instance.writeData(key: model.carId, value: model);
+                      } else {
+                        HiveService.instance.deleteData(key: model.carId);
+                      }
+                    });
+                  },
+                  icon: SvgPicture.asset(
+                    AppVectors.instance.like,
+                    colorFilter: HiveService.instance.readData(key: model.carId) != null ? ColorFilter.mode(AppColors.instance.amber, BlendMode.srcIn) : null,
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ],
