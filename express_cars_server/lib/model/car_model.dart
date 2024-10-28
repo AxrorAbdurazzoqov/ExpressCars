@@ -1,55 +1,73 @@
-class CarModel {
-    final String name;
-    final String image;
-    final List<Car> cars;
+import 'package:hive/hive.dart';
 
-    CarModel({
-        required this.name,
-        required this.image,
-        required this.cars,
-    });
+@HiveType(typeId: 1)
+class CarBrandModel {
+  @HiveField(1)
+  final String name;
+  @HiveField(2)
+  final String image;
+  @HiveField(3)
+  final List<Car> cars;
 
-    factory CarModel.fromJson(Map<String, dynamic> json) => CarModel(
+  CarBrandModel({
+    required this.name,
+    required this.image,
+    required this.cars,
+  });
+
+  factory CarBrandModel.fromJson(Map<String, dynamic> json) => CarBrandModel(
         name: json["name"],
         image: json["image"],
         cars: List<Car>.from(json["cars"].map((x) => Car.fromJson(x))),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "name": name,
         "image": image,
         "cars": List<dynamic>.from(cars.map((x) => x.toJson())),
-    };
+      };
 }
 
+@HiveType(typeId: 2)
 class Car {
-    final String carId;
-    final String type;
-    final String name;
-    final String model;
-    final int year;
-    final bool available;
-    final int pricePerDay;
-    final int pricePerWeek;
-    final int pricePerMonth;
-    final String imageUrl;
-    final Features features;
+  @HiveField(1)
+  final String carId;
+  @HiveField(2)
+  final String type;
+  @HiveField(3)
+  final String name;
+  @HiveField(4)
+  final String model;
+  @HiveField(5)
+  final int year;
+  @HiveField(6)
+  final bool available;
+  @HiveField(7)
+  final int pricePerDay;
+  @HiveField(8)
+  final int pricePerWeek;
+  @HiveField(9)
+  final int pricePerMonth;
+  @HiveField(10)
+  final String imageUrl;
+  @HiveField(11)
+  final Features features;
 
-    Car({
-        required this.carId,
-        required this.type,
-        required this.name,
-        required this.model,
-        required this.year,
-        required this.available,
-        required this.pricePerDay,
-        required this.pricePerWeek,
-        required this.pricePerMonth,
-        required this.imageUrl,
-        required this.features,
-    });
+  Car({
+    required this.carId,
+    required this.type,
+    required this.name,
+    required this.model,
+    required this.year,
+    required this.available,
+    required this.pricePerDay,
+    required this.pricePerWeek,
+    required this.pricePerMonth,
+    required this.imageUrl,
+    required this.features,
+  });
 
-    factory Car.fromJson(Map<String, dynamic> json) => Car(
+  factory Car.fromJson(Map<String, dynamic> json) => Car(
         carId: json["car_id"],
         type: json["type"],
         name: json["name"],
@@ -61,9 +79,9 @@ class Car {
         pricePerMonth: json["price_per_month"],
         imageUrl: json["image_url"],
         features: Features.fromJson(json["features"]),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "car_id": carId,
         "type": type,
         "name": name,
@@ -75,37 +93,43 @@ class Car {
         "price_per_month": pricePerMonth,
         "image_url": imageUrl,
         "features": features.toJson(),
-    };
+      };
 }
 
+@HiveType(typeId: 3)
 class Features {
-    final int seats;
-    final int engine;
-    final String fuelType;
-    final bool airConditioner;
-    final String transmission;
+  @HiveField(1)
+  final int seats;
+  @HiveField(2)
+  final int engine;
+  @HiveField(3)
+  final String fuelType;
+  @HiveField(4)
+  final bool airConditioner;
+  @HiveField(5)
+  final String transmission;
 
-    Features({
-        required this.seats,
-        required this.engine,
-        required this.fuelType,
-        required this.airConditioner,
-        required this.transmission,
-    });
+  Features({
+    required this.seats,
+    required this.engine,
+    required this.fuelType,
+    required this.airConditioner,
+    required this.transmission,
+  });
 
-    factory Features.fromJson(Map<String, dynamic> json) => Features(
+  factory Features.fromJson(Map<String, dynamic> json) => Features(
         seats: json["seats"],
         engine: json["engine"],
         fuelType: json["fuel_type"],
         airConditioner: json["air_conditioner"],
         transmission: json["transmission"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "seats": seats,
         "engine": engine,
         "fuel_type": fuelType,
         "air_conditioner": airConditioner,
         "transmission": transmission,
-    };
+      };
 }

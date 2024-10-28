@@ -1,120 +1,36 @@
-// import 'dart:io';
+import 'package:hive/hive.dart';
 
-// import 'package:hive/hive.dart';
+class HiveService {
+  static late Box box;
+  static const datadBox = 'data_box';
 
-// class HiveService {
-//   static late Box users;
-//   static late Box chats;
-//   static const usersBox = 'user_box';
-//   static const chatsBox = 'chats_box';
+  //! Singleton
+  HiveService.init();
+  static HiveService get instance => _instance;
+  static final HiveService _instance = HiveService.init();
 
-//   //! Singleton
-//   HiveService.init() {
-//     createBox();
-//   }
-//   static HiveService get instance => _instance;
-//   static final HiveService _instance = HiveService.init();
+  //! init
+  Future<void> createBox() async {
+    box = await Hive.openBox(datadBox);
+  }
 
-//   //! init
-//   Future<void> createBox() async {
-//     final currentDirectory = Directory.current.path;
-//     Hive.init(currentDirectory);
+  //! write
+  void writeData({required key, required value}) async {
+    await box.put(key, value);
+  }
 
-//     if (!Hive.isAdapterRegistered(1)) {
-//       Hive.registerAdapter(ChatModelAdapter());
-//     }
-//     if (!Hive.isAdapterRegistered(2)) {
-//       Hive.registerAdapter(MessageModelAdapter());
-//     }
-//     if (!Hive.isAdapterRegistered(3)) {
-//       Hive.registerAdapter(UserModelAdapter());
-//     }
+  //! read
+  dynamic readData({required key}) {
+    return box.get(key);
+  }
 
-//     chats = await Hive.openBox(chatsBox);
-//     users = await Hive.openBox(usersBox);
-//   }
+  //! read all
+  Map get readAllData {
+    return box.toMap();
+  }
 
-//   //! write
-//   void addData({required key, required value, required DbBoxes boxName}) async {
-//     if (!Hive.isBoxOpen(usersBox)) {
-//       users = await Hive.openBox(usersBox);
-//     }
-
-//     if (!Hive.isBoxOpen(chatsBox)) {
-//       chats = await Hive.openBox(chatsBox);
-//     }
-
-//     final Box box = boxName == DbBoxes.users ? users : chats;
-
-//     await box.put(key, value);
-
-//     print("""write $key
-//     $value""");
-//   }
-
-//   //! read
-//   dynamic getData({required key, required DbBoxes boxName}) async {
-//     if (!Hive.isBoxOpen(usersBox)) {
-//       users = await Hive.openBox(usersBox);
-//     }
-
-//     if (!Hive.isBoxOpen(chatsBox)) {
-//       chats = await Hive.openBox(chatsBox);
-//     }
-
-//     final Box box = boxName == DbBoxes.users ? users : chats;
-
-//     print(box.get(key));
-
-//     return box.get(key);
-//   }
-
-//   //! read all
-//   Future<Map> getAllData({required DbBoxes boxName}) async {
-//     if (!Hive.isBoxOpen(usersBox)) {
-//       users = await Hive.openBox(usersBox);
-//     }
-
-//     if (!Hive.isBoxOpen(chatsBox)) {
-//       chats = await Hive.openBox(chatsBox);
-//     }
-
-//     final Box box = boxName == DbBoxes.users ? users : chats;
-
-//     return box.toMap();
-//   }
-
-//   //! delete
-//   void deleteData({required key, required DbBoxes boxName}) async {
-//     if (!Hive.isBoxOpen(usersBox)) {
-//       users = await Hive.openBox(usersBox);
-//     }
-
-//     if (!Hive.isBoxOpen(chatsBox)) {
-//       chats = await Hive.openBox(chatsBox);
-//     }
-
-//     final Box box = boxName == DbBoxes.users ? users : chats;
-
-//     box.delete(key);
-//   }
-
-//   // //! clean - WARNING use only for some reasons
-//   Future<void> cleanDB() async {
-//     if (!Hive.isBoxOpen(usersBox)) {
-//       users = await Hive.openBox(usersBox);
-//     }
-
-//     if (!Hive.isBoxOpen(chatsBox)) {
-//       chats = await Hive.openBox(chatsBox);
-//     }
-//     users.deleteFromDisk();
-//     chats.deleteFromDisk();
-//     print("CLEARED");
-//   }
-// }
-
-// enum DbBoxes {
-//   users,
-//   chats
-// }
+  //! delete
+  void deleteData({required key}) {
+    box.delete(key);
+  }
+}

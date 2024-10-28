@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:express_cars_server/utils/base_url.dart';
-import 'package:express_cars_server/utils/express_cars_logic.dart';
+import 'package:express_cars_server/express_cars_logic.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 
