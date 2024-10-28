@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:express_cars/src/core/utils/hive_service.dart';
 import 'package:express_cars/src/features/detail/data/data_source/detail_data_source.dart';
 import 'package:express_cars/src/features/detail/data/repository/detail_repository.dart';
+import 'package:express_cars/src/features/detail/domain/usecase/book_car_by_id_usecase.dart';
 import 'package:express_cars/src/features/detail/domain/usecase/fetch_car_by_id_usecase.dart';
 import 'package:express_cars/src/features/detail/presentation/bloc/bloc/detail_bloc.dart';
 import 'package:express_cars/src/features/home/domain/usecase/fetch_all_cars_usecase.dart';
@@ -63,6 +64,11 @@ void main() async {
         BlocProvider(
           create: (context) => DetailBloc(
             fetchCarByIdUsecase: FetchCarByIdUsecase(
+              repository: DetailRepositoryImpl(
+                dataSource: DetailDataSourceImpl(dio: dio),
+              ),
+            ),
+            bookCarByIdUsecase: BookCarByIdUsecase(
               repository: DetailRepositoryImpl(
                 dataSource: DetailDataSourceImpl(dio: dio),
               ),

@@ -1,10 +1,8 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 sealed class DetailEvent extends Equatable {
   const DetailEvent();
-
-  @override
-  List<Object?> get props => [];
 }
 
 class FetchCarByIdEvent extends DetailEvent {
@@ -26,4 +24,30 @@ class ChooseTariffEvent extends DetailEvent {
   List<Object?> get props => [
         tariff
       ];
+}
+
+class ChangeLocationEvent extends DetailEvent {
+  final String? location;
+
+  const ChangeLocationEvent({required this.location});
+
+  @override
+  List<Object?> get props => [
+        location
+      ];
+}
+
+class BookCarById extends DetailEvent {
+  final String id;
+  final VoidCallback onSuccess;
+  final VoidCallback onFailure;
+
+  const BookCarById({
+    required this.id,
+    required this.onSuccess,
+    required this.onFailure,
+  });
+
+  @override
+  List<Object?> get props => [];
 }

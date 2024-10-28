@@ -19,6 +19,8 @@ class AppVectors {
   //! Images
   final String logo = 'assets/images/logo.png';
   final String splash = 'assets/images/splash.png';
+  final String mastercard = 'assets/images/mastercard.png';
+  final String visa = 'assets/images/visa.png';
 
   //! Splash images
   final String onboarding1 = 'assets/images/onboarding1.png';

@@ -6,6 +6,7 @@ import 'package:express_cars/src/core/utils/base_url.dart';
 
 abstract class DetailDataSource {
   Future<CarInfoModel> fetchCarInfo(String id);
+  Future<void> bookCarById(String id);
 }
 
 class DetailDataSourceImpl extends DetailDataSource {
@@ -22,6 +23,21 @@ class DetailDataSourceImpl extends DetailDataSource {
         return CarInfoModel.fromJson(
           jsonDecode(response.data),
         );
+      } else {
+        throw Exception(response.statusMessage ?? "something went wrong");
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> bookCarById(String id) async {
+    try {
+      final Response response = await _dio.get('$baseUrl/rentals/book/$id');
+
+      if (response.statusCode != null && response.statusCode == 200) {
+        return true;
       } else {
         throw Exception(response.statusMessage ?? "something went wrong");
       }

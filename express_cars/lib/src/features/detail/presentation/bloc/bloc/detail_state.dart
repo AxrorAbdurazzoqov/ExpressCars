@@ -9,20 +9,23 @@ class DetailState extends Equatable {
   final String? errorMessage;
   final CarInfoModel? model;
   final String? tariff;
+  final String? location;
 
-  const DetailState({required this.status, this.errorMessage, this.model, this.tariff});
+  const DetailState({required this.status, this.errorMessage, this.model, this.tariff, this.location});
 
   DetailState copyWith({
     DetailStatus? status,
     String? errorMessage,
     CarInfoModel? model,
     String? tariff,
+    String? location,
   }) {
     return DetailState(
       status: status ?? this.status,
       errorMessage: errorMessage ?? this.errorMessage,
       model: model ?? this.model,
       tariff: tariff ?? this.tariff,
+      location: location ?? this.location,
     );
   }
 
@@ -30,6 +33,7 @@ class DetailState extends Equatable {
   List<Object?> get props => [
         status,
         model,
+        location,
         errorPropertyTextConfiguration,
         tariff,
       ];

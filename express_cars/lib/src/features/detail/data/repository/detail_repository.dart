@@ -4,6 +4,7 @@ import 'package:express_cars/src/features/detail/data/data_source/detail_data_so
 
 abstract class DetailRepository {
   Future<Either<String, CarInfoModel>> fetchCarInfo(String id);
+  Future<Either<void, void>> bookCarById(String id);
 }
 
 class DetailRepositoryImpl extends DetailRepository {
@@ -18,6 +19,16 @@ class DetailRepositoryImpl extends DetailRepository {
       return Right(result);
     } catch (e) {
       return Left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<void, void>> bookCarById(String id) async {
+    try {
+      final result = await _dataSource.bookCarById(id);
+      return Right(result);
+    } catch (e) {
+      return Left(null);
     }
   }
 }

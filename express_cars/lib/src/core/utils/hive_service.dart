@@ -13,8 +13,8 @@ class HiveService {
   //! init
   Future<void> createBox() async {
     await Hive.initFlutter();
-    Hive.registerAdapter((CarInfoModelAdapter()));
-    Hive.registerAdapter((FeaturesAdapter()));
+    Hive.registerAdapter(CarInfoModelAdapter());
+    Hive.registerAdapter(FeaturesAdapter());
     box = await Hive.openBox(savedBox);
   }
 

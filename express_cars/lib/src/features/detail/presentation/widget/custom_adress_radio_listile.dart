@@ -1,6 +1,9 @@
 import 'package:express_cars/src/core/constants/colors/app_colors.dart';
 import 'package:express_cars/src/core/extensions/context_text_theme.dart';
+import 'package:express_cars/src/features/detail/presentation/bloc/bloc/detail_bloc.dart';
+import 'package:express_cars/src/features/detail/presentation/bloc/bloc/detail_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomAddressRadioListTile extends StatelessWidget {
   final String image;
@@ -22,7 +25,7 @@ class CustomAddressRadioListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card.outlined(
       child: RadioListTile(
-        value: 'Home',
+        value: title,
         selected: isSelected,
         groupValue: groupValue,
         secondary: SizedBox(
@@ -46,7 +49,9 @@ class CustomAddressRadioListTile extends StatelessWidget {
           address,
           style: context.textTheme.titleSmall!.copyWith(color: AppColors.instance.grey),
         ),
-        onChanged: (val) {},
+        onChanged: (val) {
+          context.read<DetailBloc>().add(ChangeLocationEvent(location: val));
+        },
       ),
     );
   }
