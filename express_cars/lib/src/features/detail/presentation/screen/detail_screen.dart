@@ -101,14 +101,20 @@ class _DetailScreenState extends State<DetailScreen> {
                       child: ListTile(
                         leading: Icon(Icons.airline_seat_recline_extra_rounded),
                         title: Text('Seats'),
-                        trailing: Text(state.model!.features.seats.toString()),
+                        trailing: Text(
+                          state.model!.features.seats.toString(),
+                          style: context.textTheme.titleMedium!.copyWith(color: AppColors.instance.blue),
+                        ),
                       ),
                     ),
                     Card.outlined(
                       child: ListTile(
                         leading: Icon(Icons.ac_unit_outlined),
                         title: Text('Air Conditioner'),
-                        trailing: Text(state.model!.features.airConditioner ? 'Yes' : 'No'),
+                        trailing: Text(
+                          state.model!.features.airConditioner ? 'Yes' : 'No',
+                          style: context.textTheme.titleMedium!.copyWith(color: AppColors.instance.blue),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20),

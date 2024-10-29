@@ -8,6 +8,7 @@ import 'package:express_cars/src/features/detail/presentation/bloc/bloc/detail_b
 import 'package:express_cars/src/features/home/domain/usecase/fetch_all_cars_usecase.dart';
 import 'package:express_cars/src/features/home/domain/usecase/fetch_brand_cars_usecase.dart';
 import 'package:express_cars/src/features/home/domain/usecase/fetch_popular_cars_usecase.dart';
+import 'package:express_cars/src/features/profile/presentation/bloc/bloc/profile_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,6 +38,7 @@ void main() async {
         BlocProvider(create: (context) => NavigationBloc()),
         BlocProvider(create: (context) => OnboardingBloc()),
         BlocProvider(create: (context) => AuthBloc()),
+        BlocProvider(create: (context) => ProfileBloc()),
         BlocProvider(
           create: (context) => HomeBloc(
             fetchBrandsUsecase: FetchBrandsUsecase(

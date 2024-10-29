@@ -19,11 +19,12 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(
       const Duration(milliseconds: 1500),
-      () => Navigator.push(
+      () => Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => FirebaseAuth.instance.currentUser != null ? const Navigation() : const OnboargingScreen(),
         ),
+        (_) => false,
       ),
     );
   }

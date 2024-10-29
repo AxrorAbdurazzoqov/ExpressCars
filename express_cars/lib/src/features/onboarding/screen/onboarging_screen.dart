@@ -13,69 +13,67 @@ class OnboargingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: BlocBuilder<OnboardingBloc, OnboardingState>(
-          builder: (context, state) {
-            final bloc = BlocProvider.of<OnboardingBloc>(context).state;
-            return Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage(bloc.data[bloc.index].image),
-                ),
+      body: BlocBuilder<OnboardingBloc, OnboardingState>(
+        builder: (context, state) {
+          final bloc = BlocProvider.of<OnboardingBloc>(context).state;
+          return Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage(bloc.data[bloc.index].image),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: context.getHeight(0.1),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: context.getHeight(0.1),
+                  ),
+                  Text(
+                    bloc.data[bloc.index].title,
+                    style: context.textTheme.headlineLarge!.copyWith(color: AppColors.instance.white, fontWeight: FontWeight.w900),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    bloc.data[bloc.index].description,
+                    style: context.textTheme.titleMedium!.copyWith(color: AppColors.instance.white),
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: List.generate(
+                      3,
+                      (index) {
+                        return index == bloc.index
+                            ? AnimatedContainer(
+                                duration: Duration(milliseconds: 300), 
+                                curve: Curves.easeInOut,
+                                margin: EdgeInsets.only(right: 4),
+                                height: 5,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  color: AppColors.instance.greenAccent,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.only(right: 4),
+                                child: CircleAvatar(radius: 2.5),
+                              );
+                      },
                     ),
-                    Text(
-                      bloc.data[bloc.index].title,
-                      style: context.textTheme.headlineLarge!.copyWith(color: AppColors.instance.white, fontWeight: FontWeight.w900),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      bloc.data[bloc.index].description,
-                      style: context.textTheme.titleMedium!.copyWith(color: AppColors.instance.white),
-                    ),
-                    const Spacer(),
-                    Row(
-                      children: List.generate(
-                        3,
-                        (index) {
-                          return index == bloc.index
-                              ? AnimatedContainer(
-                                  duration: Duration(milliseconds: 300), 
-                                  curve: Curves.easeInOut,
-                                  margin: EdgeInsets.only(right: 4),
-                                  height: 5,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.instance.greenAccent,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                )
-                              : Padding(
-                                  padding: const EdgeInsets.only(right: 4),
-                                  child: CircleAvatar(radius: 2.5),
-                                );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    DraggableNextButton(),
-                    const SizedBox(height: 30),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 10),
+                  DraggableNextButton(),
+                  const SizedBox(height: 30),
+                ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

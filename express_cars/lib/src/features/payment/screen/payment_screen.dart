@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:express_cars/src/core/common/custom_elevated_button.dart';
 import 'package:express_cars/src/core/constants/colors/app_colors.dart';
 import 'package:express_cars/src/core/constants/vectors/app_vectors.dart';
@@ -8,6 +10,7 @@ import 'package:express_cars/src/features/detail/presentation/bloc/bloc/detail_b
 import 'package:express_cars/src/features/detail/presentation/bloc/bloc/detail_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class PaymentScreen extends StatelessWidget {
   final String id;
@@ -39,8 +42,8 @@ class PaymentScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('25410039 8567 9850', style: context.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold)),
-                        Text('Dirghayu Joshi', style: context.textTheme.titleMedium),
+                        Text('2541 0039 8567 9850', style: context.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold)),
+                        Text('Axror Abdurrazzoqov', style: context.textTheme.titleMedium),
                       ],
                     ),
                     Image.asset(
@@ -57,7 +60,28 @@ class PaymentScreen extends StatelessWidget {
                 context.read<DetailBloc>().add(
                       BookCarById(
                         id: id,
-                        onSuccess: () => context.showCustomSnackBar(color: AppColors.instance.blue, title: "Car booked successfully"),
+                        onSuccess: () async {
+                          showDialog(
+                            context: context,
+                            builder: (context) => Container(
+                              height: 80,
+                              width: 80,
+                              margin: EdgeInsets.all(50),
+                              child: LottieBuilder.network(
+                                'https://lottie.host/a2d75671-3458-4ee3-9d5f-1f886ad94215/epC22Wimku.json',
+                                alignment: Alignment.center,
+                                fit: BoxFit.contain,
+                                repeat: false,
+                              ),
+                            ),
+                          );
+                          Timer(
+                            const Duration(seconds: 2),
+                            () {
+                              Navigator.pop(context);
+                            },
+                          );
+                        },
                         onFailure: () => context.showCustomSnackBar(color: AppColors.instance.red, title: "Something went wrong"),
                       ),
                     );
