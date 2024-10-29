@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:express_cars/src/core/common/car_info_model.dart';
 import 'package:express_cars/src/core/constants/colors/app_colors.dart';
 import 'package:express_cars/src/core/constants/vectors/app_vectors.dart';
@@ -6,6 +7,7 @@ import 'package:express_cars/src/core/utils/hive_service.dart';
 import 'package:express_cars/src/features/detail/presentation/screen/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CustomInfoCard extends StatelessWidget {
   final CarInfoModel model;
@@ -38,10 +40,23 @@ class CustomInfoCard extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Image.network(
-                  height: 150,
-                  width: double.infinity,
-                  model.imageUrl,
+                CachedNetworkImage(
+                  imageUrl: model.imageUrl,
+                  imageBuilder: (context, imageProvider) => Image.network(
+                    height: 150,
+                    width: double.infinity,
+                    model.imageUrl,
+                  ),
+                  placeholder: (context, url) => Shimmer.fromColors(
+                    baseColor: AppColors.instance.grey,
+                    highlightColor: AppColors.instance.grey.withValues(alpha: 0.3),
+                    child: Image.network(
+                      height: 150,
+                      width: double.infinity,
+                      model.imageUrl,
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
                 const SizedBox(height: 10),
                 Row(
