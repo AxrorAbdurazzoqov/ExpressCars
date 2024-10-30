@@ -29,7 +29,7 @@ class DraggableNextButtonState extends State<DraggableNextButton> {
         dX = 0;
         context.read<OnboardingBloc>().add(
               OnIndexChangedEvent(
-                index: BlocProvider.of<OnboardingBloc>(context).state.index+1,
+                index: BlocProvider.of<OnboardingBloc>(context).state.index + 1,
                 onSuccess: () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginScreen()), (_) => false),
               ),
             );
@@ -38,7 +38,7 @@ class DraggableNextButtonState extends State<DraggableNextButton> {
         height: 55,
         width: 180,
         decoration: BoxDecoration(
-          color: AppColors.instance.grey.withValues(alpha: 0.8),
+          color: AppColors.instance.grey.withOpacity(0.8),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Stack(
@@ -54,7 +54,7 @@ class DraggableNextButtonState extends State<DraggableNextButton> {
                     return Icon(
                       CupertinoIcons.chevron_right,
                       size: 20,
-                      color: AppColors.instance.black.withValues(alpha: ((index + 1) * 3) / 10),
+                      color: AppColors.instance.black.withOpacity(((index + 1) * 3) / 10),
                     );
                   },
                 ),

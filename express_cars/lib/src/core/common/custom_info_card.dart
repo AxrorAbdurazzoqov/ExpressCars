@@ -49,7 +49,7 @@ class CustomInfoCard extends StatelessWidget {
                   ),
                   placeholder: (context, url) => Shimmer.fromColors(
                     baseColor: AppColors.instance.grey,
-                    highlightColor: AppColors.instance.grey.withValues(alpha: 0.3),
+                    highlightColor: AppColors.instance.grey.withOpacity(0.3),
                     child: Image.network(
                       height: 150,
                       width: double.infinity,
@@ -107,7 +107,7 @@ class CustomInfoCard extends StatelessWidget {
             builder: (context, setState) {
               return Container(
                 decoration: BoxDecoration(
-                  color: AppColors.instance.grey.withValues(alpha: 0.4),
+                  color: AppColors.instance.grey.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: IconButton(

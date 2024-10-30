@@ -90,7 +90,7 @@ class _CustomBookingSheetState extends State<CustomBookingSheet> {
                   padding: EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: AppColors.instance.grey.withValues(alpha: 0.2),
+                    color: AppColors.instance.grey.withOpacity(0.2),
                   ),
                   child: Icon(Icons.calendar_month_rounded),
                 ),
@@ -112,7 +112,7 @@ class _CustomBookingSheetState extends State<CustomBookingSheet> {
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     decoration: BoxDecoration(
-                      color: index == selectedDate ? AppColors.instance.grey.withValues(alpha: 0.15) : AppColors.instance.white,
+                      color: index == selectedDate ? AppColors.instance.grey.withOpacity(0.15) : AppColors.instance.white,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: index == selectedDate ? AppColors.instance.green : AppColors.instance.grey,
@@ -163,7 +163,7 @@ class _CustomBookingSheetState extends State<CustomBookingSheet> {
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                     decoration: BoxDecoration(
-                      color: index == selectedTime ? AppColors.instance.grey.withValues(alpha: 0.15) : AppColors.instance.white,
+                      color: index == selectedTime ? AppColors.instance.grey.withOpacity(0.15) : AppColors.instance.white,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: index == selectedTime ? AppColors.instance.green : AppColors.instance.grey,

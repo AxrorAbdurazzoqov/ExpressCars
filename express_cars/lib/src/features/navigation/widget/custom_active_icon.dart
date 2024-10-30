@@ -27,7 +27,7 @@ class CustomActiveIcon extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  AppColors.instance.lightGreenAccent.withValues(alpha: 0.5),
+                  AppColors.instance.lightGreenAccent.withOpacity(0.5),
                   AppColors.instance.white,
                 ],
                 stops: [

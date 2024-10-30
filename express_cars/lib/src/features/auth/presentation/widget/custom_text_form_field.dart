@@ -55,7 +55,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         hintStyle: context.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w300, color: AppColors.instance.grey),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide(color: AppColors.instance.grey.withValues(alpha: 0.3)),
+          borderSide: BorderSide(color: AppColors.instance.grey.withOpacity(0.3)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
