@@ -22,6 +22,9 @@ class AppVectors {
   final String mastercard = 'assets/images/mastercard.png';
   final String visa = 'assets/images/visa.png';
 
+  //! Lotties
+  final String done = 'assets/lottie/done.json';
+
   //! Splash images
   final String onboarding1 = 'assets/images/onboarding1.png';
   final String onboarding2 = 'assets/images/onboarding2.png';

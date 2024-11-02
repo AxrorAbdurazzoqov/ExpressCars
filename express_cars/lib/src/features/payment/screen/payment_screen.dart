@@ -8,6 +8,7 @@ import 'package:express_cars/src/core/extensions/mediaquery_size.dart';
 import 'package:express_cars/src/core/extensions/show_custom_snack_bar.dart';
 import 'package:express_cars/src/features/detail/presentation/bloc/bloc/detail_bloc.dart';
 import 'package:express_cars/src/features/detail/presentation/bloc/bloc/detail_event.dart';
+import 'package:express_cars/src/features/payment/widget/custom_payment_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -19,6 +20,7 @@ class PaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Payment Method'),
       ),
@@ -54,6 +56,41 @@ class PaymentScreen extends StatelessWidget {
                 ),
               ),
             ),
+            Text(
+              'Add New Card',
+              style: context.textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              child: CustomPaymentTextField(labelText: 'Card Number'),
+            ),
+            const SizedBox(height: 14),
+            SizedBox(
+              child: CustomPaymentTextField(labelText: 'Card Holder Name'),
+            ),
+            SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomPaymentTextField(labelText: 'Expirly Date'),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: CustomPaymentTextField(labelText: 'CVV'),
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
+            Align(
+              alignment: Alignment.centerRight,
+              child: CustomElevatedButton(
+                onTap: () {},
+                color: AppColors.instance.grey,
+                title: 'Add Card',
+                height: 40,
+                width: 150,
+              ),
+            ),
             const Spacer(),
             CustomElevatedButton(
               onTap: () {
@@ -67,8 +104,8 @@ class PaymentScreen extends StatelessWidget {
                               height: 80,
                               width: 80,
                               margin: EdgeInsets.all(50),
-                              child: LottieBuilder.network(
-                                'https://lottie.host/a2d75671-3458-4ee3-9d5f-1f886ad94215/epC22Wimku.json',
+                              child: LottieBuilder.asset(
+                                AppVectors.instance.done,
                                 alignment: Alignment.center,
                                 fit: BoxFit.contain,
                                 repeat: false,
@@ -79,6 +116,14 @@ class PaymentScreen extends StatelessWidget {
                             const Duration(seconds: 2),
                             () {
                               Navigator.pop(context);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Container(
+                                    color: Colors.teal,
+                                  ),
+                                ),
+                              );
                             },
                           );
                         },

@@ -22,10 +22,10 @@ class _CustomBookingSheetState extends State<CustomBookingSheet> {
   int selectedDate = 0;
   int selectedTime = 0;
   final List<String> times = [
-    "07:00 AM",
     "09:00 AM",
-    "11:00 AM",
-    "12:00 PM"
+    "12:00 PM",
+    "15:00 PM",
+    "16:00 PM"
   ];
 
   @override

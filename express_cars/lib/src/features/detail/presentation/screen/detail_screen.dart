@@ -47,11 +47,16 @@ class _DetailScreenState extends State<DetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 20),
                     Image.network(
                       state.model!.imageUrl,
                       fit: BoxFit.contain,
                     ),
-                    const SizedBox(height: 20),
+                    Text(
+                      '${state.model!.brand} ${state.model!.model} ${state.model!.year}',
+                      style: context.textTheme.headlineMedium!.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -66,11 +71,6 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                       ],
                     ),
-                    Text(
-                      '${state.model!.brand} ${state.model!.model} ${state.model!.year}',
-                      style: context.textTheme.headlineMedium!.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -150,17 +150,18 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                         CustomElevatedButton(
                           onTap: () {
-                            if (BlocProvider.of<DetailBloc>(context).state.tariff == null) return;
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return CustomBookingSheet(
-                                  id: widget.id,
-                                );
-                              },
-                            );
+                            if (BlocProvider.of<DetailBloc>(context).state.tariff != null && state.model!.available) {
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (context) {
+                                  return CustomBookingSheet(
+                                    id: widget.id,
+                                  );
+                                },
+                              );
+                            }
                           },
-                          title: 'Book now',
+                          title: state.model!.available ? 'Book now' : 'Not Avaible',
                           color: AppColors.instance.greenAccent,
                           height: context.getHeight(0.09),
                           width: context.getWidth(0.5),
